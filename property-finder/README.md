@@ -4,6 +4,8 @@ A tool to collect and search property listings — built to help me find and buy
 
 Scraped listings from iproperty.com.my, filtered by budget and area, and plotted them on an interactive map to compare options visually. It worked. I bought the house.
 
+![Demo](img/demo.gif)
+
 ## Motivation
 
 Searching for properties across multiple platforms manually was tedious. This automated the collection and gave me a searchable, visual dataset to work from.

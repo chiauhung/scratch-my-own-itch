@@ -22,3 +22,10 @@ Captures paywalled Substack articles as PDFs and indexes them into a vector data
 Streamlit app that generates custom banana costume images using Gemini's image generation API. Built for fun. No further justification needed.
 
 `Python` · `Streamlit` · `Gemini API`
+
+---
+
+### [property-finder](./property-finder/) _(2017, archived)_
+Scraped property listings from iproperty.com.my, filtered by budget and area, and plotted them on an interactive map. Built to help me find and buy my house in KL. It worked. Not maintained — iproperty.com.my has changed significantly since 2017.
+
+`Python` · `Scrapy` · `Flask` · `Folium` · `Pandas`
