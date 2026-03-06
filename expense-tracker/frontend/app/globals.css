@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 340 100% 98%; /* Warm pastel pink-white */
+    --foreground: 280 30% 35%; /* Warm purple-gray text */
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 280 30% 35%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 280 30% 35%;
+
+    --primary: 340 100% 85%; /* Soft pink #FFC8DD */
+    --primary-foreground: 280 40% 30%;
+
+    --secondary: 300 40% 80%; /* Soft lavender #CDB4DB */
+    --secondary-foreground: 280 40% 30%;
+
+    --muted: 180 60% 95%; /* Very light mint */
+    --muted-foreground: 280 20% 50%;
+
+    --accent: 350 100% 88%; /* Warm rose #FFAFCC */
+    --accent-foreground: 280 40% 30%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 300 30% 90%;
+    --input: 300 30% 90%;
+    --ring: 340 100% 85%;
+
+    --radius: 0.75rem;
+
+    /* Typography Hierarchy Colors - Easy to adjust globally */
+    --heading-main: 340 60% 55%;        /* H1: Main page title - Warm rose pink */
+    --heading-card: 300 45% 50%;        /* H2: Card titles - Medium lavender */
+    --heading-section: 280 40% 45%;     /* H3: Section headings - Darker lavender */
+    --text-description: 280 25% 55%;    /* Descriptions/subtitles - Light purple-gray */
+    --text-body: 280 30% 35%;           /* Body text - Base text */
+    --text-muted: 280 15% 60%;          /* Muted/secondary text - Lighter gray */
+    --text-number: 340 50% 50%;         /* Numbers/amounts - Accent rose */
+
+    /* Button Hierarchy Colors - Easy to adjust globally */
+    --button-primary: 340 85% 70%;      /* Primary action buttons - Soft pink */
+    --button-primary-hover: 340 85% 65%;/* Primary button hover - Darker pink */
+    --button-secondary: 300 35% 85%;    /* Secondary buttons - Light lavender */
+    --button-secondary-hover: 300 35% 80%; /* Secondary hover - Darker lavender */
+    --button-outline-border: 300 30% 75%; /* Outline button border */
+    --button-outline-hover: 300 40% 95%; /* Outline button hover background */
+
+    /* Theme Colors - For backgrounds, borders, accents */
+    --theme-bg-light: 340 100% 98%;     /* Light background */
+    --theme-bg-gradient-1: 205 100% 94%; /* Gradient start - Light blue #BDE0FE */
+    --theme-bg-gradient-2: 350 100% 93%; /* Gradient mid - Soft pink #FFC8DD */
+    --theme-bg-gradient-3: 350 100% 88%; /* Gradient end - Rose #FFAFCC */
+    --theme-bg-mint: 165 60% 95%;       /* Mint background #D8F7F2 */
+
+    --theme-border-light: 300 30% 90%;  /* Light border */
+    --theme-border-medium: 300 30% 75%; /* Medium border */
+
+    --theme-surface: 0 0% 100%;         /* Card/surface white */
+    --theme-surface-hover: 300 40% 95%; /* Surface hover state */
+  }
+
+  .dark {
+    --background: 210 50% 10%;
+    --foreground: 0 0% 95%;
+
+    --card: 210 50% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 210 50% 5%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 200 60% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 170 50% 48%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 50% 20%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 165 90% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 210 50% 20%;
+    --input: 210 50% 20%;
+    --ring: 200 60% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    background: linear-gradient(
+      to bottom right,
+      hsl(var(--theme-bg-gradient-1)),
+      hsl(var(--theme-bg-mint) / 0.3),
+      hsl(var(--theme-bg-gradient-2) / 0.4)
+    );
+    @apply text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+/* Typography Hierarchy Utility Classes */
+@layer utilities {
+  /* Headings */
+  .heading-main {
+    color: hsl(var(--heading-main));
+  }
+
+  .heading-card {
+    color: hsl(var(--heading-card));
+  }
+
+  .heading-section {
+    color: hsl(var(--heading-section));
+  }
+
+  /* Text */
+  .text-description {
+    color: hsl(var(--text-description));
+  }
+
+  .text-body {
+    color: hsl(var(--text-body));
+  }
+
+  .text-muted-custom {
+    color: hsl(var(--text-muted));
+  }
+
+  .text-number {
+    color: hsl(var(--text-number));
+  }
+
+  /* Theme Backgrounds & Borders */
+  .bg-theme-light {
+    background-color: hsl(var(--theme-bg-light));
+  }
+
+  .bg-theme-surface {
+    background-color: hsl(var(--theme-surface));
+  }
+
+  .bg-theme-surface-hover {
+    background-color: hsl(var(--theme-surface-hover));
+  }
+
+  .border-theme-light {
+    border-color: hsl(var(--theme-border-light));
+  }
+
+  .border-theme-medium {
+    border-color: hsl(var(--theme-border-medium));
+  }
+}
+
+/*
+  ═══════════════════════════════════════════════════════════════════
+  COLOR THEME CUSTOMIZATION GUIDE
+  ═══════════════════════════════════════════════════════════════════
+
+  To adjust the entire color scheme, edit the CSS variables in :root.
+  All colors use HSL format: HUE SATURATION% LIGHTNESS%
+  Example: 340 60% 55% = Rose color at 60% saturation, 55% lightness
+
+  ═══════════════════════════════════════════════════════════════════
+  TYPOGRAPHY HIERARCHY
+  ═══════════════════════════════════════════════════════════════════
+  --heading-main: Main page title (H1) - Warm rose pink
+  --heading-card: Card titles (H2) - Medium lavender
+  --heading-section: Section headings (H3) - Darker lavender
+  --text-description: Descriptions/subtitles - Light purple-gray
+  --text-body: Body text - Base purple-gray
+  --text-muted: Muted/less important text - Lighter gray
+  --text-number: Numbers/amounts - Accent rose
+
+  Usage: .heading-main, .heading-card, .text-body, .text-number, etc.
+
+  ═══════════════════════════════════════════════════════════════════
+  BUTTON HIERARCHY
+  ═══════════════════════════════════════════════════════════════════
+  --button-primary: Primary action buttons - Soft pink
+  --button-primary-hover: Primary button hover state - Darker pink
+  --button-secondary: Secondary buttons - Light lavender
+  --button-secondary-hover: Secondary hover state - Darker lavender
+  --button-outline-border: Outline button borders - Medium lavender
+  --button-outline-hover: Outline button hover bg - Very light lavender
+
+  Usage: Automatically applied in <Button> component
+
+  ═══════════════════════════════════════════════════════════════════
+  THEME COLORS (Backgrounds, Borders, Surfaces)
+  ═══════════════════════════════════════════════════════════════════
+  --theme-bg-light: Light background
+  --theme-bg-gradient-1/2/3: Gradient colors for backgrounds
+  --theme-bg-mint: Mint background accent
+  --theme-border-light: Light borders
+  --theme-border-medium: Medium borders
+  --theme-surface: Card/surface white
+  --theme-surface-hover: Surface hover state
+
+  Usage: .bg-theme-light, .border-theme-light, .bg-theme-surface, etc.
+
+  ═══════════════════════════════════════════════════════════════════
+  HOW TO CHANGE THE ENTIRE THEME
+  ═══════════════════════════════════════════════════════════════════
+  1. Edit the HSL values in :root {...} above
+  2. All components will automatically update
+  3. No need to edit individual component files!
+
+  Example: Want a blue theme? Change:
+  --heading-main: 210 60% 55%  (Blue instead of rose)
+  --button-primary: 210 85% 70%  (Blue button)
+  --theme-bg-gradient-2: 210 100% 93%  (Blue gradient)
+*/

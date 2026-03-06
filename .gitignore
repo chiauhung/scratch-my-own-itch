@@ -1,0 +1,29 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+
+# Node
+node_modules/
+.next/
+
+# Env & secrets
+.env
+.env.local
+
+# Data & generated files
+*.db
+*.sqlite
+data/pdf/
+data/json/
+chroma_data/
+.playwright_session/
+mcp_cache/
+generated_image.png
+page_*.png
+
+# OS
+.DS_Store
+Thumbs.db

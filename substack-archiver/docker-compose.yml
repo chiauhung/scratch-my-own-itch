@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # ChromaDB Vector Database
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: substack-chromadb
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./chroma_data:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+    restart: unless-stopped
+
+  # MCP Server (FastMCP HTTP)
+  mcp-server:
+    image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+    container_name: substack-mcp-server
+    working_dir: /app
+    command: ["uv", "run", "src/mcp_server.py"]
+    ports:
+      - "8001:8001"
+    depends_on:
+      - chromadb
+    volumes:
+      # Only mount necessary files (not data/ or chroma_data/)
+      - ./src:/app/src
+      - ./pyproject.toml:/app/pyproject.toml
+      - ./uv.lock:/app/uv.lock
+      # Cache for ONNX models (ChromaDB embedding function)
+      - ./mcp_cache:/root/.cache
+    environment:
+      - CHROMA_HOST=chromadb
+      - CHROMA_PORT=8000
+    restart: unless-stopped
