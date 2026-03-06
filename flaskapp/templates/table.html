@@ -1,0 +1,58 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            h1{
+              text-align:center;
+            }
+            table,td,th{
+              font-size:16pt;
+              border: 1px solid black;
+              border-collapse: collapse;
+              padding: 5px;
+            }
+            table{
+              width:100%;
+            }
+            th{
+              background-color:#f1f1c1;
+            }
+            .right{
+              text-align: right;
+            }
+            pre {
+              font-family: "Times New Roman", Times, serif;
+            }
+        </style>
+    </head>
+    <body>
+      <h1> House Property</h1>
+      <div>
+        <table>
+          <col width="20%">
+          <col width="10%">
+          <col width="15%">
+          <col width="15%">
+          <col width="15%">
+          <col width="15%">
+          <col width="10%">
+          <tr>
+            {%for col in columns %}
+            <th>{{col}}</th>
+            {% endfor %}
+          </tr>
+          {%for row in resp_json %}
+          <tr>
+            <td>{{row['name']}}</td>
+            <td>{{row['tenure']}}</td>
+            <td class="right">{{row['price']}}</td>
+            <td class="right">{{row['size']}}</td>
+            <td><pre>{{',\n'.join(row['amenities'])}}</pre></td>
+            <td>{{row['address']}}</td>
+            <td>{{row['link']}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </body>
+</html>

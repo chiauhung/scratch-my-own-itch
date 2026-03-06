@@ -1,0 +1,77 @@
+/* General Styles */
+html{
+   background:url(http://phutora.com/img/friends3.jpg) no-repeat;
+   background-size: cover;
+   height:100%;
+   background-color: #000;
+}
+* {
+   box-sizing:border-box;
+   -webkit-box-sizing:border-box;
+   -moz-box-sizing:border-box;
+   -webkit-font-smoothing:antialiased;
+   -moz-font-smoothing:antialiased;
+   -o-font-smoothing:antialiased;
+   font-smoothing:antialiased;
+   text-rendering:optimizeLegibility;
+}
+body {
+   color: #C0C0C0;
+   font-size:16pt; 
+   font-family: "Times New Roman";
+}
+
+form {
+   background-color:rgba(72,72,72,0.7);
+   padding: 10px 20px 30px 20px;
+   max-width:100%;
+   float: left;
+   left: 50%;
+   position: absolute;
+   margin-top:30px;
+   margin-left: -260px;
+   border-radius:7px;
+   -webkit-border-radius:7px;
+   -moz-border-radius:7px;
+}
+
+#budget input,
+#user input,
+#contact-form select,   
+#contact-form textarea { 
+   width:100%;
+   background: #fff;
+   border: 0; 
+   -moz-border-radius: 4px;  
+   -webkit-border-radius: 4px;  
+   border-radius: 4px;
+   padding: 3px;  
+}  
+#budget input{
+  width:47%;
+}
+#budget input[id='min']{
+   margin-right: 5px;
+}
+#budget input[id='max']{
+   margin-left: 5px;
+}
+
+h1{
+  text-align: center;
+}
+div{
+  padding: 3px;  
+  margin-bottom: 20px; 
+}
+
+#tenure input:not([value="Freehold"]){
+  margin-left:45%;
+}
+#tenure input[value="Freehold"]{
+  margin-left:10%;
+}
+input[type="submit"]{
+  float:right;
+  margin-left:5px;
+}

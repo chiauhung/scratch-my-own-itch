@@ -1,0 +1,49 @@
+<head>
+  <title> House Property Crawler</title>
+  <link rel="stylesheet" type="text/css" href={{url_for('static',filename='home.css')}}>
+</head>
+<body>
+  <div id="contact-form">
+    <h1> House Property Crawler </h1>  
+     <form method="post" action="/" id="formdata">
+       <div id="user">
+         <span>Hi! Whats your name?:</span></br>     
+         <input type="text" name="user">
+       </div>
+       <div id="state">
+         <span>Select State:</span>
+          <select name = "states">
+            <option value = "" selected>
+            {% for k,s in states.items() %}
+            <option value = "{{k}}">{{s}}
+            {% endfor %}
+          </select>
+       </div>
+       <div id = "budget">
+         <span>Enter min and max budget:</span><br>
+          <input type="text" name="min_price">
+          <input type="text" name="max_price">
+       </div>
+      <div id="tenure">
+        <span>Type of tenure</span><br>
+          {% for t in tenure %}
+          <input type="radio" name="tenure" value="{{t}}"> {{t}} <br>
+          {% endfor %}
+        </span>
+      </div>
+      <input type="submit" name="submit" value="Start Crawl" onclick="loadpage()">
+      <input type="submit" name="submit" value="View History">
+    </form>  
+    <form id="load" style="display:none;" > 
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" ><br>
+      Please Wait while the data is being crawled...
+    </form>
+  </div>
+  <script>
+    function loadpage(){
+      document.getElementById("formdata").style.display = "none";
+      document.getElementById("load").style.display = "block";
+    }
+  </script>
+</body>
+

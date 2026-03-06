@@ -1,0 +1,21 @@
+<head>
+  <title> Crawled! </title>
+  <script>
+  function doselect(){
+    var sel = document.getElementById("map");
+    var mapdate = document.getElementById("maplink");
+
+    map_link = "{{url_for('map_plot')}}"
+    mapdate.href = map_link + '/'+sel.value
+  }
+</script>
+</head>
+<body>
+  <select id="map" name ="maps" onchange="doselect()"> 
+    <option value = "" selected>
+    {% for k,v in maps.items() %}
+    <option value={{k}}> {{v}}
+    {% endfor %}
+  </select><br>
+  <a id="maplink" href="">Plot the map </a>
+</body>

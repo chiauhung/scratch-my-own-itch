@@ -1,0 +1,86 @@
+<html>
+  <header>
+  	<style type="text/css">
+  		html {
+			  background-image: url("https://openclipart.org/image/2400px/svg_to_png/8874/Gerald-G-Parchment-Background-or-Border-4.png");
+			 background-size: 100% 100%;
+			}
+			h1{
+			  text-align: center;
+			}
+			#buttons{
+			  height: 10em;
+			  display: flex;
+			  align-items: center;
+			  justify-content: center
+			}
+			.action-button
+			{
+				position: relative;
+				padding: 10px 40px;
+			  margin: 0px 10px 10px 0px;
+			  float: left;
+				border-radius: 10px;
+				font-family: 'Pacifico', cursive;
+				font-size: 25px;
+				color: #FFF;
+				text-decoration: none;	
+			}
+			.blue
+			{
+				background-color: #3498DB;
+				border-bottom: 5px solid #2980B9;
+				text-shadow: 0px -2px #2980B9;
+			}
+			.red
+			{
+				background-color: #E74C3C;
+				border-bottom: 5px solid #BD3E31;
+				text-shadow: 0px -2px #BD3E31;
+			}
+			.yellow
+			{
+				background-color: #F2CF66;
+				border-bottom: 5px solid #D1B358;
+				text-shadow: 0px -2px #D1B358;
+			}
+			#lol
+			{
+			  display: flex;
+			  align-items: center;
+			  justify-content: center
+			}
+			#setParam
+			{
+			  text-align: center;
+			  display: none;
+			}
+			output
+			{
+			  display:inline;
+			}
+  	</style>
+  	<script type="text/javascript">
+  		function showBlock(){
+		  document.getElementById("setParam").style.display = "block";
+		}
+  	</script>
+  </header>
+  <body>
+  	<h1> Display your result by </h1>
+  	<form action="./result" method="POST">
+	    <div id="buttons">
+	      <input type="submit" name='displayType' value="Table" class="action-button shadow animate blue">
+	      <input type="button" value="Map" class="action-button shadow animate red" onclick="showBlock()" id="Map">
+	    </div>
+	    <div id="setParam">
+	      <p>Set threshold for high and low prices.</p>
+	      Low<input id="rangevalue" name="threshold" type="range" value="{{(min_price + max_price)/2}}" min="{{ min_price }}" max="{{ max_price }}" step="10000"name="threshold" onchange="displayvalue.value=rangevalue.value">High<br> 
+	      <output id="displayvalue">{{ (min_price + max_price)/2 }}</output>
+	      <div id="lol">
+	      <input type="submit" name='displayType' value="OK" class="yellow" >
+	      </div>
+	    </div>
+    </form>
+  </body>
+</html>
