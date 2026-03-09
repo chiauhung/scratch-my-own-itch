@@ -36,10 +36,10 @@ uv run playwright install webkit
 docker-compose up -d chromadb mcp-server
 
 # Capture an article
-./capture.sh "https://example.substack.com/p/article" --login
+uv run archiver/capture.py "https://example.substack.com/p/article" --login
 
 # Index into ChromaDB
-./index.sh
+uv run archiver/indexer.py
 ```
 
 See each folder's README for detailed usage.

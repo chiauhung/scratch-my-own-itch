@@ -40,8 +40,8 @@ def capture_paginated_to_pdf(url: str, output_pdf: str = None, headless: bool = 
         title = extract_title_from_url(url)
         output_pdf = f"{title}.pdf"
 
-    # Get project root (parent of src/)
-    project_root = Path(__file__).parent.parent
+    archiver_dir = Path(__file__).parent
+    project_root = archiver_dir.parent
 
     # Ensure data directories exist (always relative to project root)
     pdf_dir = project_root / "data" / "pdf"
@@ -55,8 +55,8 @@ def capture_paginated_to_pdf(url: str, output_pdf: str = None, headless: bool = 
     print(f"Opening {url} with Safari (webkit)...")
     print(f"Output will be saved as: {output_pdf_path}")
 
-    # Use persistent context to save login session (in project root)
-    user_data_dir = str(project_root / ".playwright_session")
+    # Session stored inside archiver/ (capture-specific)
+    user_data_dir = str(archiver_dir / ".playwright_session")
 
     with sync_playwright() as p:
         # Launch browser with persistent context (saves cookies/login)

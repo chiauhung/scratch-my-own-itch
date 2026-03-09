@@ -6,13 +6,13 @@ Captures Substack articles as paginated PDFs and indexes them into ChromaDB for 
 
 **First time (paywalled content):**
 ```bash
-./capture.sh "https://example.substack.com/p/article" --login
+uv run archiver/capture.py "https://example.substack.com/p/article" --login
 ```
 Browser opens → log in manually → press ENTER → PDF + JSON saved to `data/`.
 
 **Subsequent captures (session reused):**
 ```bash
-./capture.sh "https://example.substack.com/p/article"
+uv run archiver/capture.py "https://example.substack.com/p/article"
 ```
 
 **Options:**
@@ -28,7 +28,7 @@ Login session persists in `.playwright_session/` until cookies expire.
 
 After capturing, index into ChromaDB:
 ```bash
-./index.sh
+uv run archiver/indexer.py
 ```
 
 Reads all JSONs from `data/json/`, embeds and upserts into ChromaDB. Safe to re-run — existing documents are updated, not duplicated.
