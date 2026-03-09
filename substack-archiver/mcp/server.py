@@ -150,7 +150,7 @@ def search_substacks(query: str, n_results: int = 3) -> str:
         return (
             f"Error searching substacks: {str(e)}\n\n"
             f"Make sure ChromaDB is running (docker-compose up -d) "
-            f"and articles are indexed (./index.sh)"
+            f"and articles are indexed (uv run archiver/indexer.py)"
         )
 
 

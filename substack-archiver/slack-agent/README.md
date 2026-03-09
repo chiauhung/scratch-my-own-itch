@@ -40,7 +40,7 @@ cp slack-agent/.env.example slack-agent/.env
 
 ```bash
 # Make sure ChromaDB is indexed first
-./index.sh
+uv run archiver/indexer.py
 
 # Start everything
 docker-compose up -d

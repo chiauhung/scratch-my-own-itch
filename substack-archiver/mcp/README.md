@@ -49,5 +49,5 @@ curl http://localhost:8001/health_check
 ## Troubleshooting
 
 - **Tool not appearing in Claude Code**: Check `docker-compose logs mcp-server`, then restart Claude Code
-- **Collection not found**: Run `./index.sh` to populate ChromaDB first
+- **Collection not found**: Run `uv run archiver/indexer.py` to populate ChromaDB first
 - **ONNX model slow on first run**: Cache warms up in `mcp_cache/` — subsequent starts are fast
