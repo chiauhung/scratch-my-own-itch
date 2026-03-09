@@ -18,14 +18,14 @@ services:
     image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
     container_name: substack-mcp-server
     working_dir: /app
-    command: ["uv", "run", "src/mcp_server.py"]
+    command: ["uv", "run", "mcp/server.py"]
     ports:
       - "8001:8001"
     depends_on:
       - chromadb
     volumes:
       # Only mount necessary files (not data/ or chroma_data/)
-      - ./src:/app/src
+      - ./mcp:/app/mcp
       - ./pyproject.toml:/app/pyproject.toml
       - ./uv.lock:/app/uv.lock
       # Cache for ONNX models (ChromaDB embedding function)
@@ -33,4 +33,39 @@ services:
     environment:
       - CHROMA_HOST=chromadb
       - CHROMA_PORT=8000
+    restart: unless-stopped
+
+  # ADK Agent (api_server — mirrors Vertex AI Agent Engine in production)
+  adk-agent:
+    image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+    container_name: substack-adk-agent
+    working_dir: /app
+    command: ["uv", "run", "adk", "api_server", "--host", "0.0.0.0", "--port", "8002", "."]
+    ports:
+      - "8002:8002"
+    depends_on:
+      - mcp-server
+    volumes:
+      - ./slack-agent:/app
+    env_file:
+      - ./slack-agent/.env
+    environment:
+      - MCP_URL=http://mcp-server:8001
+    restart: unless-stopped
+
+  # Slack Bot (Socket Mode — mirrors Cloud Function entrypoint in production)
+  slack-bot:
+    image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+    container_name: substack-slack-bot
+    working_dir: /app
+    command: ["uv", "run", "python", "slack_bot/app.py"]
+    depends_on:
+      - adk-agent
+    volumes:
+      - ./slack-agent:/app
+      - ./slack-agent/data:/app/data
+    env_file:
+      - ./slack-agent/.env
+    environment:
+      - ADK_URL=http://adk-agent:8002
     restart: unless-stopped

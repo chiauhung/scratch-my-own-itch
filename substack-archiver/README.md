@@ -128,7 +128,7 @@ Then restart Claude Code to load the MCP server.
 
 **First time (with subscription/login):**
 ```bash
-uv run src/capture.py "https://example.substack.com/p/article" --login
+uv run archiver/capture.py "https://example.substack.com/p/article" --login
 ```
 
 - Browser opens showing the article
@@ -139,7 +139,7 @@ uv run src/capture.py "https://example.substack.com/p/article" --login
 
 **After first login (session saved):**
 ```bash
-uv run src/capture.py "https://example.substack.com/p/your-article"
+uv run archiver/capture.py "https://example.substack.com/p/your-article"
 ```
 
 - No login needed - uses saved session!
@@ -148,12 +148,12 @@ uv run src/capture.py "https://example.substack.com/p/your-article"
 
 **Custom filename:**
 ```bash
-uv run src/capture.py "https://example.substack.com/p/article" -o my_custom_name.pdf
+uv run archiver/capture.py "https://example.substack.com/p/article" -o my_custom_name.pdf
 ```
 
 **Headless mode (no browser window):**
 ```bash
-uv run src/capture.py "https://example.substack.com/p/article" --headless
+uv run archiver/capture.py "https://example.substack.com/p/article" --headless
 ```
 
 ### Indexing for Search
@@ -165,7 +165,7 @@ After capturing articles, index them into ChromaDB:
 ./index.sh
 
 # Or direct command
-uv run src/indexer.py
+uv run archiver/indexer.py
 ```
 
 This will:
@@ -204,21 +204,24 @@ curl http://localhost:8001/mcp
 ## Folder Structure
 
 ```
-substack-playwright/
+substack-archiver/
 ├── README.md                        # This file
 ├── docker-compose.yml               # Docker orchestration
 ├── .gitignore                       # Git ignore rules
 ├── pyproject.toml                   # Python project config (uv)
 ├── uv.lock                          # Dependency lock file
+├── capture.sh                       # Convenience script for capturing
 ├── index.sh                         # Convenience script for indexing
 │
-├── src/                             # Source code
-│   ├── capture.py                   # Capture script (main)
-│   ├── indexer.py                   # Index JSON to ChromaDB
-│   └── mcp_server.py                # FastMCP HTTP server
+├── archiver/                        # Capture + indexing
+│   ├── capture.py                   # Playwright capture script
+│   └── indexer.py                   # Index JSON to ChromaDB
 │
-├── docs/                            # Documentation
-│   └── SESSION_NOTES.md             # Development notes
+├── mcp/                             # FastMCP server
+│   ├── server.py                    # FastMCP HTTP server
+│   └── test_api.py                  # API tests
+│
+├── slack-agent/                     # ADK agent + Slack integration
 │
 ├── data/                            # Generated data
 │   ├── pdf/                         # PDF screenshots
