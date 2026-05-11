@@ -1,4 +1,4 @@
-# Session Summary - Substack Newsletter Archiver + MCP Search
+# Substack Archiver — Architecture
 
 ## Project Overview
 
