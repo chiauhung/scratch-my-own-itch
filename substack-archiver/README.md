@@ -1,6 +1,6 @@
 # Substack Archiver
 
-Capture paywalled Substack articles as PDFs, index them into a vector database, and search them via Claude Code or Slack.
+Capture paywalled Substack articles as PDFs, index them into a vector database, and search them via Claude Code.
 
 ## Architecture
 
@@ -9,12 +9,7 @@ Capture paywalled Substack articles as PDFs, index them into a vector database, 
 │   archiver/ │───▶│  data/      │───▶│   mcp/       │◀───│ Claude Code │
 │  capture +  │    │  pdf + json │    │  FastMCP +   │    └─────────────┘
 │  indexer    │    └─────────────┘    │  ChromaDB    │
-└─────────────┘                       └──────┬───────┘
-                                             │
-                                      ┌──────▼───────┐    ┌─────────────┐
-                                      │ slack-agent/ │◀───│    Slack    │
-                                      │  ADK + Bolt  │    └─────────────┘
-                                      └──────────────┘
+└─────────────┘                       └──────────────┘
 ```
 
 ## Folders
@@ -23,7 +18,6 @@ Capture paywalled Substack articles as PDFs, index them into a vector database, 
 |--------|-------------|
 | [`archiver/`](./archiver/) | Playwright capture + ChromaDB indexer |
 | [`mcp/`](./mcp/) | FastMCP server — semantic search over the archive |
-| [`slack-agent/`](./slack-agent/) | ADK agent + Slack bot (Socket Mode) |
 
 ## Quick Start
 
@@ -46,4 +40,4 @@ See each folder's README for detailed usage.
 
 ## Stack
 
-`Python` · `Playwright` · `ChromaDB` · `FastMCP` · `Google ADK` · `Slack Bolt` · `Docker` · `uv`
+`Python` · `Playwright` · `ChromaDB` · `FastMCP` · `Docker` · `uv`
